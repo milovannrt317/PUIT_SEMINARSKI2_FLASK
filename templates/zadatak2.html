@@ -1,0 +1,118 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+{% block title %}Zadatak 2{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-inverse" style="border-radius: 0px">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">PUIT</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/zad1">Zadatak 1</a></li>
+        <li class="active"><a href="/zad2">Zadatak 2 <span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  {{util.flashed_messages(dismissible=True)}}
+  {% block app_content %}
+    <div class="container">
+      <div class="row">
+        <img class="col-md-6 col-xs-12" src="/static/img/magla.jpg" alt="">
+        <img class="col-md-6 col-xs-12" src="/static/img/maglaNormalized.jpg" alt="">
+      </div>
+    </div>
+
+    <form action="/zad2" method="post">
+      {{ form.csrf_token}}
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4" style="padding: 1em;">
+            <div class="form-group">
+              <h3 style="color: red">Crvena</h3>
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.inpMinR, class="form-control", placeholder="Uneti minimalnu input vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.inpMaxR, class="form-control", placeholder="Uneti maksimalnu input vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.outMinR, class="form-control", placeholder="Uneti minimalnu output vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.outMaxR, class="form-control", placeholder="Uneti maksimalnu output vredenost. (0-255)") }}
+            </div>
+          </div>
+
+          <div class="col-md-4" style="padding: 1em;">
+            <div class="form-group">
+              <h3 style="color: green">Zelena</h3>
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.inpMinG, class="form-control", placeholder="Uneti minimalnu input vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.inpMaxG, class="form-control", placeholder="Uneti maksimalnu input vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.outMinG, class="form-control", placeholder="Uneti minimalnu output vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.outMaxG, class="form-control", placeholder="Uneti maksimalnu output vredenost. (0-255)") }}
+            </div>
+          </div>
+
+          <div class="col-md-4" style="padding: 1em;">
+            <div class="form-group">
+              <h3 style="color: blue">Plava</h3>
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.inpMinB, class="form-control", placeholder="Uneti minimalnu input vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.inpMaxB, class="form-control", placeholder="Uneti maksimalnu input vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.outMinB, class="form-control", placeholder="Uneti minimalnu output vredenost. (0-255)") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.outMaxB, class="form-control", placeholder="Uneti maksimalnu output vredenost. (0-255)") }}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="input submit">
+                <input class="center-block btn btn-primary btn-lg" style="padding: 0.5em;margin-bottom:3em; " type="submit" value="Prikazi normalizovanu sliku">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+
+  {% endblock %}
+</div>
+
+{% endblock %}

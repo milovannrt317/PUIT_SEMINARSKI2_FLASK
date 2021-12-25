@@ -1,0 +1,107 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+{% block title %}Zadatak 1{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-inverse" style="border-radius: 0px">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">PUIT</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/zad1">Zadatak 1 <span class="sr-only">(current)</span></a></li>
+        <li><a href="/zad2">Zadatak 2</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  {{util.flashed_messages(dismissible=True)}}
+  {% block app_content %}
+    <div class="container">
+      <div class="row">
+        <img src="/static/img/plot.png" class="center-block col-md-push-2 col-md-8 col-xs-12" alt="">
+      </div>
+    </div>
+
+    <form action="/zad1" method="post">
+      {{ form.csrf_token}}
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4" style="padding: 1em;">
+            <div class="form-group">
+              <h3>Interval na pozitivnom delu x ose</h3>
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.xmin, class="form-control", placeholder="Uneti minimum na x osi.") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.xmax, class="form-control", placeholder="Uneti maximum na x osi.") }}
+            </div>
+          </div>
+
+          <div class="col-md-4" style="padding: 1em;">
+            <div class="form-group">
+              <h3>Parabola 1 a*x^2+b*x+c</h3>
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.a1, class="form-control", placeholder="Uneti a koeficijent parabole 1.") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.b1, class="form-control", placeholder="Uneti b koeficijent parabole 1.") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.c1, class="form-control", placeholder="Uneti c koeficijent parabole 1.") }}
+            </div>
+          </div>
+
+          <div class="col-md-4" style="padding: 1em;">
+            <div class="form-group">
+              <h3>Parabola 2 a*x^2+b*x+c</h3>
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.a2, class="form-control", placeholder="Uneti a koeficijent parabole 2.") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.b2, class="form-control", placeholder="Uneti b koeficijent parabole 2.") }}
+            </div>
+            <div class="form-group">
+              {{wtf.form_field(form.c2, class="form-control", placeholder="Uneti c koeficijent parabole 2.") }}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <h3 class="center-block col-md-push-4 col-md-4">Rezultat je : {{rezultat}}</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+                <input class="center-block btn btn-primary btn-lg" style="padding: 0.5em;margin-bottom:3em; " type="submit" value="Nacrtaj">
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+
+  {% endblock %}
+</div>
+
+{% endblock %}
